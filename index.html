@@ -1,0 +1,42 @@
+#include<cs50.h>
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<ctype.h>
+
+int main(int argc, string argv[])
+{
+    int k = argc;
+    // char alphabets[] = "abcdefghijklmnopqrstuvwxyz";
+
+    if (k == 2)
+    {
+        int key = atoi(argv[1]);
+        string plaintext = get_string("plaintext: ");
+        int number = strlen(plaintext);
+        char ciphertext[number];
+        // int link[number] = atoi(plaintext);
+
+        for (int i = 0; i < number; i++)
+        {
+            if (plaintext[i]>122 || plaintext[i]<65 ||(plaintext[i]<97 && plaintext[i]>90))
+                ciphertext[i] = plaintext[i];
+            else if (isupper(plaintext[i]))
+                ciphertext[i] = 65 + ((plaintext[i]-65 + key)%26);
+            else{
+                ciphertext[i] = 97 + ((plaintext[i] - 97 + key)%26) ;
+            }
+        }
+
+        //snprintf(ciphertext,number,"%d",link);
+
+        printf("ciphertext: %s\n",ciphertext);
+    }
+    else
+    {
+        printf("Usage: ./caesar key\n");
+        return 1;
+    }
+
+    return 0;
+}
